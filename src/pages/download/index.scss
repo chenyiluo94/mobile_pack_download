@@ -1,0 +1,174 @@
+@import "src/css/variables.scss";
+@import "src/css/mixin.scss";
+.download-info {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    .top-img {
+        width: 100%;
+        height: px2rem(90px);
+        background-color: black;
+    }
+    .header-img {
+        width: 100%;
+        height: px2rem(100px);
+        object-fit: cover;
+        margin-bottom: px2rem(80px);
+    }
+    .download-app-icon {
+        width: px2rem(150px);
+        height: px2rem(150px);
+        background-color: gray;
+    }
+    .download-app-info {
+        margin-top: px2rem(80px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        .download-app-from {
+            width: px2rem(48px);
+            height: px2rem(48px);
+            background-color: gray;
+        }
+        .download-app-name {
+            color: black;
+            font-size: px2rem(44px);
+            font-weight: 400;
+            margin-left: px2rem(50px);
+            margin-right: px2rem(50px);
+        }
+        .download-app-type {
+            font-size: px2rem(30px);
+            font-weight: 400;
+            background-color: #e84d67;
+            border-radius: px2rem(5px);
+            padding: px2rem(5px);
+        }
+    }
+    .download-version-info {
+        margin-top: px2rem(50px);
+        color: #788090;
+        font-size: px2rem(34px);
+        font-weight: 400;
+        margin-left: px2rem(50px);
+        margin-right: px2rem(50px);
+        text-align: center;
+
+        .download-version-build {
+            white-space: nowrap;
+        }
+        .vertical-line {
+            display: inline-flex;
+            background-color: #788090;
+            width: px2rem(0.5px);
+            height: px2rem(36px);
+            margin-left: px2rem(25px);
+            margin-right: px2rem(25px);
+            color: #788090;
+        }
+        .download-app-size {
+            white-space: nowrap;
+        }
+        .download-app-upadate {
+            white-space: nowrap;
+        }
+    }
+    .download-app-img {
+        width: px2rem(240px);
+        height: px2rem(240px);
+        margin-top: px2rem(100px);
+        margin-bottom: px2rem(100px);
+    }
+    .download-button {
+        width: px2rem(550px);
+        height: px2rem(90px);
+        background-color: #1abc9c;
+        border-radius: px2rem(40px);
+        display: flex;
+        box-sizing: border-box;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: px2rem(40px);
+    }
+    .download-fail-season {
+        margin-top: px2rem(20px);
+        margin-right: px2rem(20px);
+        margin-left: px2rem(20px);
+        background-color: #faebcc;
+        padding: px2rem(30px);
+        border-radius: px2rem(6px);
+    }
+    .app-info {
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+        .horizontal-line {
+            margin-top: px2rem(100px);
+            margin-bottom: px2rem(100px);
+            width: 100%;
+            background-color: #788090;
+            height: px2rem(0.5px);
+        }
+        .app-content-margin {
+            margin: 0 px2rem(40px);
+            position: relative;
+            .app-info-title {
+                font-size: px2rem(40px);
+                color: #000;
+                font-weight: 900;
+            }
+            .app-info-content {
+                font-size: px2rem(30px);
+                margin-top: px2rem(30px);
+                color: #969b9d;
+            }
+            .app-info-text-green {
+                color: #1abc9c;
+                font-size: px2rem(30px);
+                margin-top: px2rem(10px);
+                position: absolute;
+                right: px2rem(40px);
+            }
+            .app-feedback {
+                color: #1abc9c;
+                font-size: px2rem(30px);
+                margin-top: px2rem(10px);
+                position: absolute;
+                right: px2rem(40px);
+                border: 1px solid #1abc9c;
+                border-radius: px2rem(40px);
+                padding: px2rem(10px) px2rem(30px);
+            }
+            .app-info-imglist {
+                height: px2rem(500px);
+                .img-show-row {
+                    display: flex;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
+                    flex-direction: row;
+                    height: px2rem(500px);
+                    display:inline-block;
+                    white-space: nowrap;
+                    width: 100%;
+                }
+                .img-show-item {
+                    display:inline-block;
+                    height: px2rem(500px);
+                    width: px2rem(300px);
+                    margin-right: px2rem(20px);
+                    margin-top: px2rem(20px);
+                }
+            }
+        }
+    }
+    .margin-200 {
+        height: px2rem(400px);
+    }
+}

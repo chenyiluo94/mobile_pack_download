@@ -1,0 +1,83 @@
+@import "src/css/variables.scss";
+@import "src/css/mixin.scss";
+.console-info {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: px2rem(24px);
+    padding: px2rem(20px);
+    box-sizing: border-box;
+    .console-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: px2rem(40px);
+        .console-title {
+            color: #666;
+            font-size: px2rem(44px);
+            margin-left: px2rem(20px);
+        }
+        .console-button {
+            color: white;
+            width: auto;
+            display: inline-flex;
+            width: px2rem(100px);
+            justify-content: center;
+            align-items: center;
+            font-size: px2rem(30px);
+            background-color: #1abc9c;
+            border-radius: px2rem(10px);
+            padding: px2rem(15px) px2rem(0px);
+        }
+    }
+
+    .horizontal-line {
+        background-color: #ccc;
+        height: px2rem(0.2px);
+        margin: px2rem(50px) px2rem(0px) px2rem(50px);
+    }
+
+    .console-bg {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        .console-row-appinfo {
+            display: flex;
+            flex-direction: row;
+            height: px2rem(70px);
+            align-items: center;
+            
+            .console-row-appinfo-name {
+                margin-left: px2rem(20px);
+                flex: 1;
+                white-space:nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .console-row-appinfo-desc {
+                margin-left: px2rem(20px);
+                flex: 1.5;
+                white-space:nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .console-row-appinfo-url {
+                margin-left: px2rem(20px);
+                margin-right: px2rem(20px);
+                flex: 1;
+                white-space:nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .color-gray{
+            background-color: #f5f6f8;
+        }
+        .color-white{
+            background-color: white;
+        }
+        
+    }
+}
