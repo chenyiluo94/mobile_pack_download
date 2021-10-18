@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import rootReducer from '@reducers'
 // import { logger, /* router, */ reduxRouterMiddleware } from './index'
 // import { logger} from './index'
-const nextReducer = require('@reducers')
+const nextReducer = require('../redux/reducers')
 
 export default function configure(initialState) {
   // console.log('initialState', initialState)

@@ -9,9 +9,9 @@
               "legacy": true
             }
         ],
-        ["import", {
-            "libraryName": "antd-mobile",
-            "style": true
-        }]
+        // ["import", {
+        //     "libraryName": "antd-mobile",
+        //     "style": true
+        // }]
     ]
 }
