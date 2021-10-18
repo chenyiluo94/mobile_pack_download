@@ -68,9 +68,30 @@
             .detail-edit-name {
                 height: px2rem(70px);
             }
+            .detail-radio{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: px2rem(70px);
+                padding-left: px2rem(38px);
+                padding-right: px2rem(38px);
+                border: 0px solid #fff;
+                border-radius: px2rem(12px);
+                background-color: #f6f8fa;
+                font-family: "PingFang SC";
+                font-weight: 500;
+                font-size: px2rem(28px);
+                box-sizing: border-box;
+                font-size: px2rem(28px);
+                color: #232426;
+                margin: px2rem(30px) 0;
+            }
             .detail-edit-introduce {
                 padding: px2rem(38px);
                 height: px2rem(300px);
+            }
+            .margin-40{
+                margin-left: px2rem(40px);
             }
             .detail-addimg-bg {
                 background-color: #f6f8fa;

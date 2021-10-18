@@ -6,7 +6,15 @@
         [
             "@babel/plugin-proposal-decorators",
             {
-              "legacy": true
+                "legacy": true
+            }
+        ],
+        [
+            "import",
+            {
+                "libraryName": "antd-mobile",
+                "libraryDirectory": "es",
+                "style": "css"
             }
         ],
         // ["import", {

@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import ajax, { ErrorCode } from '@utils/ajax'
 import { values } from 'lodash';
-
+import { Toast } from 'antd-mobile';
 class ConsolePage extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +15,7 @@ class ConsolePage extends React.Component {
     }
     onClickItem = () => {
         //replace替换
-        this.props.history.push('/upload')
+        this.props.history.push('/upload/detail')
     }
     loadAppinfo(){
         ajax.get('/v1/allapp', {}).then((res) => {
@@ -47,6 +47,8 @@ class ConsolePage extends React.Component {
                 <div className="console-bg">
                     <div className="console-row-appinfo color-gray">
                         <div className="console-row-appinfo-name">应用名称</div>
+                        <div className="console-row-appinfo-name">平台来源</div>
+                        <div className="console-row-appinfo-name">应用包名</div>
                         <div className="console-row-appinfo-desc">应用描述</div>
                         <div className="console-row-appinfo-url">下载地址</div>
                     </div>
@@ -62,16 +64,21 @@ export default ConsolePage;
 
 //app信息 row
 class AppInfoRow extends React.Component {
-    onClickItem2 = () => {
+    onClickItem2(item){
         //replace替换
-        this.props.history.push({ pathname: "/download", state: {appId:this.props.item.id}})
-        
+        if(item.filePath===null||item.filePath===undefined||item.filePath===""){
+            this.props.history.push({ pathname: "/upload/file/"+item.id})
+        }else{
+            this.props.history.push({ pathname: "/download/"+item.bid})
+        }
     }
     render() {
         const item = this.props.item;
         return (
-            <div className="console-row-appinfo color-white" onClick={this.onClickItem2}>
+            <div className="console-row-appinfo color-white" onClick={() => { this.onClickItem2(item) }}>
                 <div className="console-row-appinfo-name">{item.name}</div>
+                <div className="console-row-appinfo-name">{item.platform}</div>
+                <div className="console-row-appinfo-name">{item.bundleId}</div>
                 <div className="console-row-appinfo-desc">{item.desc}</div>
                 <div className="console-row-appinfo-url">{item.filePath}</div>
             </div>

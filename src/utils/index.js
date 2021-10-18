@@ -14,7 +14,24 @@ export const get_search = (data) => {
     }
   })
 }
-
+//获取链接里面参数 获取到的是一个全部参数的对象
+export const getUrlParam = (searchP) => {
+  var params = {}
+  var search = window.location.hash
+  if (searchP) {
+    search = window.location.search.replace('/', '')
+  }
+  search = /\?/.test(search) && search.split("?")[1]
+  var searchs = /\&/.test(search) ? search.split("&") : [search]
+  for (var i = 0; i < searchs.length; i++) {
+    if (/\=/.test(searchs[i])) {
+      var item = searchs[i].split("=")
+      params[item[0]] = item[1]
+    }
+  }
+  return params
+}
 export default {
   get_search,
+  getUrlParam
 }

@@ -10,41 +10,29 @@ class Upload extends React.Component {
             fileName: '',
             files: [],
         }
+        this.appId=this.props.match.params.appId;
     }
     onClickUpload = () => {
         if (this.state.files.length <= 0) {
             Toast.info('请上传apk');
             return;
         }
-        console.log(this.state.files[0]);
-        console.log(this.state.files[0].file)
-        // ajax.post('v1/upload', { appid: 'F4B768D0-604D-4F94-A6DE-81399345FE06', file: this.state.files[0] }).then((res) => {
-        //     // removeDudaoSession()
-        //     if (res.code !== ErrorCode.succ) {
-        //         Toast.info(res.msg)
-        //         return
-        //     }
-        //     //保存信息
-        // }, (res) => {
-        //     Toast.info(res.msg)
-        // })
         const formData = new FormData()
         formData.append("file", this.state.files[0])
-        formData.append("appid", 'F4B768D0-604D-4F94-A6DE-81399345FE06')
-        fetch('v1/upload', {
+        formData.append("appid", this.appId)
+        const res =fetch('v1/upload', {
             method: 'POST',
             body: formData
-        }).then(response => console.log(response))
-
-        // const res = await fetch.post('v1/upload', formData, {
-        //     'Content-Type': 'multipart/form-data'
-        // })
-        // if (res.code !== ErrorCode.succ) {
-        //     Toast.info(res.msg)
-        //     return
-        // }else{
-        //     Toast.info(res.msg)
-        // }
+        }).then(res => {
+            if (res.code !== ErrorCode.succ) {
+                Toast.info(res.msg)
+                return
+            }else{
+                this.props.history.replace({ pathname: "/download/"+this.appId})
+            }
+        })
+        
+        
     }
     onFileChange = (event) => {
         if (event.target.files && event.target.files[0]) {

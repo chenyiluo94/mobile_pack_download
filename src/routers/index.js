@@ -12,7 +12,7 @@ const routes = [
     check_login: true,
     component: Loadable({
       loader: () =>
-        import('@pages/home/index'),
+        import('@pages/console'),
       loading,
     })
   },

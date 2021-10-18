@@ -3,7 +3,7 @@ import './index.scss';
 import ajax, { ErrorCode } from '@utils/ajax'
 import { divide } from 'lodash';
 import QRCode from 'qrcode.react';
-
+import { Toast } from 'antd-mobile';
 class Download extends React.Component {
     constructor(props) {
         super(props)
@@ -13,7 +13,11 @@ class Download extends React.Component {
             text: '',//应用介绍
             appName:'',//app名字
             screenshot:'',//应用截图
+            icon:'',//图标
+            bundleId:'',//包名
+            platform:'',//平台来源
         }
+        this.appId=this.props.match.params.appId;
     }
     componentDidMount() {
         this.loadDownloadInfo();
@@ -25,7 +29,7 @@ class Download extends React.Component {
         });
     }
     loadDownloadInfo(){
-        ajax.get('/v1/appinfo/'+this.props.location.state.appId, {}).then((res) => {
+        ajax.get('/v1/appinfobid/'+this.appId, {}).then((res) => {
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return
@@ -35,6 +39,9 @@ class Download extends React.Component {
                qrUrl:"https://fir.bllgo.com/"+res.obj.filePath,
                appName:res.obj.name,
                screenshot:res.obj.screenshot,
+               icon:res.obj.icon,
+               bundleId:res.obj.bundleId,
+               platform:res.obj.platform,
             });
         }, (res) => {
             Toast.info(res.msg)
@@ -42,7 +49,7 @@ class Download extends React.Component {
     }
 
     render() {
-        let { isShowExpand, text,appName,screenshot } = this.state;
+        let { isShowExpand, text,appName,screenshot,icon,platform,bundleId } = this.state;
         const numbers = [1];
         let isExpandDiv;
         if (text!==""&&text.length > 10) {
@@ -57,10 +64,15 @@ class Download extends React.Component {
         return (
             <div className="download-info">
                 <img className="header-img" src="/image/header_img.png"></img>
-                <div className="download-app-icon"></div>
+                <img className="download-app-icon" src={icon}></img>
                 <div className="download-app-info">
                     <span className="download-app-name">{appName}</span>
                     <span className="download-app-type">内测版</span>
+                </div>
+                <div className="download-version-info">
+                    <span className="download-version-build">包名：{bundleId}</span>
+                    <div className="vertical-line"></div>
+                    <span className="download-app-size">平台来源：{platform}</span>
                 </div>
                 <QRCode
                     className="download-app-img"

@@ -2,12 +2,12 @@ import Loadable from 'react-loadable'
 import loading from '../components/loading'
 const Upload = [
     {
-        path: "/upload",
+        path: "/upload/file/:appId",
         exact: true,
         check_login: true,
         component: Loadable({
             loader: () =>
-                import('@pages/upload/index'),
+                import('@pages/upload/file/index'),
             loading,
         })
     },
