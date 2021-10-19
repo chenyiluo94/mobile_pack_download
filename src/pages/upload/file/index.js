@@ -20,18 +20,25 @@ class Upload extends React.Component {
         Toast.loading('加载中', 6000);
         const formData = new FormData()
         formData.append("file", this.state.files[0])
-        formData.append("appid", this.appId)
-        const res =fetch('v1/upload', {
+        formData.append("bid", this.appId)
+        fetch('v1/upload', {
             method: 'POST',
             body: formData
-        }).then(res => {
+        })
+        .then(response => response.json())
+        .then(results => {
             Toast.hide();
-            if (res.code !== ErrorCode.succ) {
-                Toast.info(res.msg)
-                return
-            }else{
-                this.props.history.replace({ pathname: "/download/"+this.appId})
-            }
+                console.log(results)
+                if (results.code !== ErrorCode.succ) {
+                    Toast.info(results.msg)
+                    return
+                }else{
+                    this.props.history.replace({ pathname: "/download/"+this.appId})
+                }
+        })
+        .catch(err => {
+         Toast.hide();
+          console.log(err)
         })
         
         

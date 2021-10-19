@@ -56,7 +56,7 @@ class DetailPage extends React.Component {
                 return
             }
             //replace替换
-            this.props.history.push({ pathname: "/upload/file/" + res.obj.id })
+            this.props.history.push({ pathname: "/upload/file/" + res.obj.bid })
         }, (res) => {
             Toast.hide();
             Toast.info(res.msg)

@@ -28,6 +28,10 @@ class Download extends React.Component {
             isShowExpand: !isShowExpand
         });
     }
+    
+    onClickDownload(qrUrl) {
+        window.location.href=qrUrl;
+    }
     loadDownloadInfo(){
         Toast.loading('加载中', 6000);
         ajax.get('/v1/appinfobid/'+this.appId, {}).then((res) => {
@@ -52,7 +56,7 @@ class Download extends React.Component {
     }
 
     render() {
-        let { isShowExpand, text,appName,screenshot,icon,platform,bundleId } = this.state;
+        let { isShowExpand, text,appName,screenshot,icon,platform,bundleId,qrUrl } = this.state;
         const numbers = [1];
         let isExpandDiv;
         if (text!==""&&text.length > 10) {
@@ -83,7 +87,7 @@ class Download extends React.Component {
                     size={200} //二维码的宽高尺寸
                     fgColor="#000000"  //二维码的颜色
                 />
-                <div className="download-button">下载</div>
+                <div className="download-button" onClick={() => this.onClickDownload(qrUrl)}>下载</div>
                 <div className="app-info">
                     <div className="horizontal-line"></div>
                     <div className="app-content-margin">

@@ -71,7 +71,7 @@ class AppInfoRow extends React.Component {
     onClickItem2(item){
         //replace替换
         if(item.filePath===null||item.filePath===undefined||item.filePath===""){
-            this.props.history.push({ pathname: "/upload/file/"+item.id})
+            this.props.history.push({ pathname: "/upload/file/"+item.bid})
         }else{
             this.props.history.push({ pathname: "/download/"+item.bid})
         }
