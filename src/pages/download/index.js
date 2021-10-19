@@ -29,7 +29,9 @@ class Download extends React.Component {
         });
     }
     loadDownloadInfo(){
+        Toast.loading('加载中', 6000);
         ajax.get('/v1/appinfobid/'+this.appId, {}).then((res) => {
+            Toast.hide();
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return
@@ -44,6 +46,7 @@ class Download extends React.Component {
                platform:res.obj.platform,
             });
         }, (res) => {
+            Toast.hide()
             Toast.info(res.msg)
         })
     }

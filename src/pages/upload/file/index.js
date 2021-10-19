@@ -17,6 +17,7 @@ class Upload extends React.Component {
             Toast.info('请上传apk');
             return;
         }
+        Toast.loading('加载中', 6000);
         const formData = new FormData()
         formData.append("file", this.state.files[0])
         formData.append("appid", this.appId)
@@ -24,6 +25,7 @@ class Upload extends React.Component {
             method: 'POST',
             body: formData
         }).then(res => {
+            Toast.hide();
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return

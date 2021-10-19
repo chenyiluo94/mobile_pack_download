@@ -43,14 +43,14 @@ class DetailPage extends React.Component {
             Toast.info('请输入应用介绍');
             return;
         }
-        
+        Toast.loading('加载中', 6000);
         ajax.post('/v1/publish', { 
             name: this.state.appName, 
             desc: this.state.appInfo, 
             platform:this.state.platform,
             bundleId:this.state.appPackName,
             scteenshot: this.state.files.length>0?this.state.files[0].url :''}).then((res) => {
-            // removeDudaoSession()
+            Toast.hide();
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return
@@ -58,6 +58,7 @@ class DetailPage extends React.Component {
             //replace替换
             this.props.history.push({ pathname: "/upload/file/" + res.obj.id })
         }, (res) => {
+            Toast.hide();
             Toast.info(res.msg)
         })
     }

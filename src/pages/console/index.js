@@ -18,7 +18,9 @@ class ConsolePage extends React.Component {
         this.props.history.push('/upload/detail')
     }
     loadAppinfo(){
+        Toast.loading('加载中', 6000);
         ajax.get('/v1/allapp', {}).then((res) => {
+            Toast.hide();
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return
@@ -27,6 +29,7 @@ class ConsolePage extends React.Component {
                 list:res.obj
             });
         }, (res) => {
+            Toast.hide();
             Toast.info(res.msg)
         })
     }
@@ -55,6 +58,7 @@ class ConsolePage extends React.Component {
                     {rowsInfo}
                 </div>
             </div>
+            
         );
     }
 }
