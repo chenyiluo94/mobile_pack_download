@@ -9,15 +9,16 @@ class Download extends React.Component {
         super(props)
         this.state = {
             isShowExpand: true,//文字是否展开
-            qrUrl:'',//二维码地址
+            qrUrl: '',//二维码地址，android是apk的下载地址，ios是本页面的地址
             text: '',//应用介绍
-            appName:'',//app名字
-            screenshot:'',//应用截图
-            icon:'',//图标
-            bundleId:'',//包名
-            platform:'',//平台来源
+            appName: '',//app名字
+            screenshot: '',//应用截图
+            icon: '',//图标
+            bundleId: '',//包名
+            platform: '',//平台来源
+            iosDownloadurl: '',//ios的下载地址
         }
-        this.appId=this.props.match.params.appId;
+        this.appId = this.props.match.params.appId;
     }
     componentDidMount() {
         this.loadDownloadInfo();
@@ -28,26 +29,41 @@ class Download extends React.Component {
             isShowExpand: !isShowExpand
         });
     }
-    
+
     onClickDownload(qrUrl) {
-        window.location.href=qrUrl;
+        if (this.state.platform === 'iOS') {
+            window.location.href = this.state.iosDownloadurl;
+        } else {
+            window.location.href = qrUrl;
+        }
+
     }
-    loadDownloadInfo(){
+    loadDownloadInfo() {
         Toast.loading('加载中', 6000);
-        ajax.get('/v1/appinfobid/'+this.appId, {}).then((res) => {
+        ajax.get('/v1/appinfobid/' + this.appId, {}).then((res) => {
             Toast.hide();
             if (res.code !== ErrorCode.succ) {
                 Toast.info(res.msg)
                 return
             }
+            if (res.obj.platform === 'iOS') {
+                this.setState({
+                    qrUrl: 'https://fir.bllgo.com/#/download/' + this.appId,
+                    iosDownloadurl:"itms-services://?action=download-manifest&url=https://fir.bllgo.com"+res.obj.plistPath,
+                })
+            } else {
+                this.setState({
+                    qrUrl: "https://fir.bllgo.com" + res.obj.filePath,
+                })
+            }
+            console.log(this.state.qrUrl)
             this.setState({
-               text:res.obj.desc,
-               qrUrl:"https://fir.bllgo.com/"+res.obj.filePath,
-               appName:res.obj.name,
-               screenshot:res.obj.screenshot,
-               icon:res.obj.icon,
-               bundleId:res.obj.bundleId,
-               platform:res.obj.platform,
+                text: res.obj.desc,
+                appName: res.obj.name,
+                screenshot: res.obj.screenshot,
+                icon: res.obj.icon,
+                bundleId: res.obj.bundleId,
+                platform: res.obj.platform,
             });
         }, (res) => {
             Toast.hide()
@@ -56,10 +72,10 @@ class Download extends React.Component {
     }
 
     render() {
-        let { isShowExpand, text,appName,screenshot,icon,platform,bundleId,qrUrl } = this.state;
+        let { isShowExpand, text, appName, screenshot, icon, platform, bundleId, qrUrl } = this.state;
         const numbers = [1];
         let isExpandDiv;
-        if (text!==""&&text.length > 10) {
+        if (text !== "" && text.length > 10) {
             if (isShowExpand) {
                 isExpandDiv = (<a className="app-info-text-green" onClick={this.handleUp}>展开</a>)
             } else {
@@ -133,10 +149,10 @@ class Download extends React.Component {
 
 function ListImgItem(props) {
     const screenshot = props.value;
-    
+
 
     return <img className="img-show-item"
-    src={screenshot}
+        src={screenshot}
     >
     </img>;
 }
