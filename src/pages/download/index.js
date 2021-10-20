@@ -17,6 +17,7 @@ class Download extends React.Component {
             bundleId: '',//包名
             platform: '',//平台来源
             iosDownloadurl: '',//ios的下载地址
+            isShowScreenshot: true,//是否显示截图
         }
         this.appId = this.props.match.params.appId;
     }
@@ -49,14 +50,22 @@ class Download extends React.Component {
             if (res.obj.platform === 'iOS') {
                 this.setState({
                     qrUrl: 'https://fir.bllgo.com/#/download/' + this.appId,
-                    iosDownloadurl:"itms-services://?action=download-manifest&url=https://fir.bllgo.com"+res.obj.plistPath,
+                    iosDownloadurl: "itms-services://?action=download-manifest&url=https://fir.bllgo.com" + res.obj.plistPath,
                 })
             } else {
                 this.setState({
                     qrUrl: "https://fir.bllgo.com" + res.obj.filePath,
                 })
             }
-            console.log(this.state.qrUrl)
+            if (res.obj.screenshot === null || res.obj.screenshot === '' || res.obj.screenshot === undefined) {
+                this.setState({
+                    isShowScreenshot: false,
+                })
+            } else {
+                this.setState({
+                    isShowScreenshot: true,
+                })
+            }
             this.setState({
                 text: res.obj.desc,
                 appName: res.obj.name,
@@ -72,7 +81,7 @@ class Download extends React.Component {
     }
 
     render() {
-        let { isShowExpand, text, appName, screenshot, icon, platform, bundleId, qrUrl } = this.state;
+        let { isShowExpand, text, appName, screenshot, icon, platform, bundleId, qrUrl,isShowScreenshot } = this.state;
         const numbers = [1];
         let isExpandDiv;
         if (text !== "" && text.length > 10) {
@@ -122,24 +131,17 @@ class Download extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="app-info">
-                    <div className="horizontal-line"></div>
-                    <div className="app-content-margin">
-                        <div className="app-info-title">应用截图</div>
-                        <div className="app-info-imglist">
-                            <ListImgList numbers={numbers} screenshot={this.state.screenshot} />
+                {
+                    isShowScreenshot ? (<div className="app-info">
+                        <div className="horizontal-line"></div>
+                        <div className="app-content-margin">
+                            <div className="app-info-title">应用截图</div>
+                            <div className="app-info-imglist">
+                                <ListImgList numbers={numbers} screenshot={screenshot} />
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div className="app-info">
-                    <div className="horizontal-line"></div>
-                    <div className="app-content-margin">
-                        <div className="app-info-title">使用反馈</div>
-                        <div className="app-info-content">向该应用的开发者提交您在使用过程中遇到的问题或对应用的建议，帮助他们做的更好。</div>
-                        <div className="app-feedback">反馈</div>
-                    </div>
-                </div>
+                    </div>) : ''
+                }
                 <div className="margin-200"> </div>
 
             </div>
