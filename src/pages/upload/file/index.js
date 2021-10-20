@@ -28,7 +28,6 @@ class Upload extends React.Component {
         .then(response => response.json())
         .then(results => {
             Toast.hide();
-                console.log(results)
                 if (results.code !== ErrorCode.succ) {
                     Toast.info(results.msg)
                     return

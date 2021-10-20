@@ -48,36 +48,56 @@
             flex-direction: row;
             height: px2rem(70px);
             align-items: center;
-            
+
             .console-row-appinfo-name {
                 margin-left: px2rem(20px);
+                flex: 1.5;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .console-row-appfrom {
+                margin-left: px2rem(20px);
                 flex: 1;
-                white-space:nowrap;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
             .console-row-appinfo-desc {
                 margin-left: px2rem(20px);
-                flex: 1.5;
-                white-space:nowrap;
+                flex: 0.8;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                .console-row-btn {
+                    color: white;
+                    width: auto;
+                    display: inline-flex;
+                    width: px2rem(80px);
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #1abc9c;
+                    border-radius: px2rem(10px);
+                    padding: px2rem(5px) px2rem(0px);
+                }
             }
             .console-row-appinfo-url {
                 margin-left: px2rem(20px);
                 margin-right: px2rem(20px);
                 flex: 1;
-                white-space:nowrap;
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
         }
-        .color-gray{
+        .color-gray {
             background-color: #f5f6f8;
         }
-        .color-white{
+        .color-white {
             background-color: white;
         }
-        
     }
+}
+* {
+    touch-action: pan-y;
 }
