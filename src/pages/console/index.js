@@ -85,6 +85,10 @@ class AppInfoRow extends React.Component {
         this.showAlert(item)
         // Toast.info("删除")
     }
+    onClickUpdate(item, e) {
+        e.stopPropagation();
+        this.props.history.push({ pathname: "/upload/file/" + item.bid })
+    }
     showAlert(item) {
         const alertInstance = alert('', '是否删除', [
             {
@@ -127,6 +131,7 @@ class AppInfoRow extends React.Component {
                 <div className="console-row-appinfo-name">{item.bundleId}</div>
                 <div className="console-row-appinfo-desc" >
                     <div className="console-row-btn" onClick={(e) => { this.onClickDelete(item, e) }}>删除</div>
+                    <div className="console-row-btn margin-left15" onClick={(e) => { this.onClickUpdate(item, e) }}>更新</div>
                 </div>
             </div>
         );
