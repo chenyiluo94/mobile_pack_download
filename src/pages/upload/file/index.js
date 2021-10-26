@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import ajax, { ErrorCode } from '@utils/ajax';
 import { Progress, Toast } from 'antd-mobile';
-
+import Cookies from 'js-cookie';
 class Upload extends React.Component {
     constructor(props) {
         super(props)
@@ -11,6 +11,12 @@ class Upload extends React.Component {
             files: [],
         }
         this.appId=this.props.match.params.appId;
+    }
+    componentDidMount() {
+        if (Cookies.get('token') === null || Cookies.get('token') === '' || Cookies.get('token') === undefined || Cookies.get('token') === 'undefined') {
+            this.props.history.push({ pathname: '/login' })
+            return
+        }
     }
     onClickUpload = () => {
         if (this.state.files.length <= 0) {

@@ -4,6 +4,7 @@ import ajax, { ErrorCode } from '@utils/ajax'
 import { divide } from 'lodash';
 import QRCode from 'qrcode.react';
 import { Toast } from 'antd-mobile';
+import Cookies from 'js-cookie';
 class Download extends React.Component {
     constructor(props) {
         super(props)
@@ -22,6 +23,10 @@ class Download extends React.Component {
         this.appId = this.props.match.params.appId;
     }
     componentDidMount() {
+        if (Cookies.get('token') === null || Cookies.get('token') === '' || Cookies.get('token') === undefined || Cookies.get('token') === 'undefined') {
+            this.props.history.push({ pathname: '/login' })
+            return
+        }
         this.loadDownloadInfo();
     }
     handleUp = () => {
@@ -81,7 +86,7 @@ class Download extends React.Component {
     }
 
     render() {
-        let { isShowExpand, text, appName, screenshot, icon, platform, bundleId, qrUrl,isShowScreenshot } = this.state;
+        let { isShowExpand, text, appName, screenshot, icon, platform, bundleId, qrUrl, isShowScreenshot } = this.state;
         const numbers = [1];
         let isExpandDiv;
         if (text !== "" && text.length > 10) {

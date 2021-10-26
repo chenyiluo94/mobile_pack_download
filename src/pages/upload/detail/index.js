@@ -3,6 +3,7 @@ import './index.scss';
 import ajax, { ErrorCode } from '@utils/ajax'
 import { ImagePicker, WingBlank, SegmentedControl } from 'antd-mobile';
 import { Toast, Picker } from 'antd-mobile';
+import Cookies from 'js-cookie';
 const platformList=[
     { platform: "Android" },
     { platform: "iOS" },
@@ -23,9 +24,13 @@ class DetailPage extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
+    componentDidMount() {
+        if (Cookies.get('token') === null || Cookies.get('token') === '' || Cookies.get('token') === undefined || Cookies.get('token') === 'undefined') {
+            this.props.history.push({ pathname: '/login' })
+            return
+        }
+    }
     onClickUpload = () => {
-        //replace替换
-        // this.props.history.push('/download')
         if (this.state.appName === "") {
             Toast.info('请输入应用名称');
             return;

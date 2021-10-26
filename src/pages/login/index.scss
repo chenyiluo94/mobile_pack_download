@@ -1,0 +1,141 @@
+@import "src/css/variables.scss";
+@import "src/css/mixin.scss";
+.login_info {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0 px2rem(35px);
+	width: 100%;
+	min-height: 100%;
+	background: #fff top/100% no-repeat;
+	.login_text {
+		margin-top: px2rem(50px);
+		height: px2rem(38px);
+		font-family: "PingFang SC";
+		font-weight: 500;
+		font-size: px2rem(50px);
+		color: #1d1e1f;
+	}
+	.login_edit_top {
+		margin-top: px2rem(80px);
+	}
+	.login_edit_box {
+		height: px2rem(100px);
+		width: px2rem(605px);
+		background-color: #fff;
+		display: flex;
+		margin-top: px2rem(10px);
+		.login_edit {
+			width: px2rem(605px);
+			padding-left: px2rem(38px);
+			padding-right: px2rem(38px);
+			border: 0px solid #fff;
+			border-radius: px2rem(50px);
+			background-color: #f6f7f8;
+			font-family: "PingFang SC";
+			font-weight: 500;
+			flex: 1;
+			box-sizing: border-box;
+			font-size: px2rem(35px);
+			color: #232426;
+		}
+		.login_code {
+			margin: auto 0;
+			height: px2rem(61px);
+			border-radius: 36px;
+			margin-left: px2rem(10px);
+			border: 2px solid #1abc9c;
+			font-size: px2rem(27px);
+			font-family: "PingFang SC";
+			font-weight: 400;
+			color: #1abc9c;
+			display: flex;
+			padding: 0 px2rem(2px);
+			/*实现垂直居中*/
+			align-items: center;
+			/*实现水平居中*/
+			justify-content: center;
+		}
+		::-webkit-input-placeholder {
+			/* WebKit browsers */
+			color: #aeb7ca;
+		}
+		:-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: #aeb7ca;
+		}
+		::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: #aeb7ca;
+		}
+		:-ms-input-placeholder {
+			/* Internet Explorer 10+ */
+			color: #aeb7ca;
+		}
+	}
+	input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type="number"]{
+        -moz-appearance: textfield;
+    }
+	.login_btn {
+		width: px2rem(605px);
+		height: px2rem(92px);
+		margin-top: px2rem(77px);
+		background: #1abc9c;
+		display: flex;
+		/*实现垂直居中*/
+		align-items: center;
+		/*实现水平居中*/
+		justify-content: center;
+		text-align: center;
+		font-family: "PingFang SC";
+		color: white;
+		font-weight: 500;
+		border-radius: px2rem(46px);
+	}
+	.register-button{
+		margin-top: px2rem(38px);
+		font-family: "PingFang SC";
+		color: black;
+		font-weight: 500;
+	}
+	.login_buttom {
+		width: px2rem(605px);
+		display: flex;
+		margin-top: px2rem(38px);
+		/*实现垂直居中*/
+		align-items: center;
+		.login_checkbox {
+			width: px2rem(27px);
+			height: px2rem(27px);
+		}
+		.login_buttom_text {
+			font-family: "PingFang SC";
+			color: #4b546b;
+			font-weight: 400;
+			margin-left: px2rem(7px);
+			font-size: px2rem(23px);
+			/* 未访问的链接 */
+			a:link {
+				color: #4B546B;
+			}
+			/* 已访问的链接 */
+			a:visited {
+				color: #4B546B;
+			}
+			/* 鼠标悬停链接 */
+			a:hover {
+				color: #4B546B;
+			}
+			/* 已选择的链接 */
+			a:active {
+				color: #4B546B;
+			}
+		}
+	}
+}

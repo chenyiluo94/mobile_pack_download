@@ -3,6 +3,7 @@ import './index.scss';
 import ajax, { ErrorCode } from '@utils/ajax'
 import { values } from 'lodash';
 import { Toast, Modal } from 'antd-mobile';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 const alert = Modal.alert;
 alert.maskClosable = true;
@@ -16,6 +17,10 @@ class ConsolePage extends React.Component {
         }
     }
     componentDidMount() {
+        if (Cookies.get('token') === null || Cookies.get('token') === '' || Cookies.get('token') === undefined || Cookies.get('token') === 'undefined') {
+            this.props.history.push({ pathname: '/login' })
+            return
+        }
         this.loadAppinfo()
     }
     onClickItem = () => {
@@ -106,9 +111,9 @@ class AppInfoRow extends React.Component {
     };
     deleteID(item) {
         Toast.loading('加载中', 6000);
-        var param = { "appid": item.id}
+        var param = { "appid": item.id }
         axios.delete('/v1/delete',
-            { params:param }) //config
+            { params: param }) //config
             .then(response => {
                 Toast.hide();
                 if (response.code !== ErrorCode.succ) {

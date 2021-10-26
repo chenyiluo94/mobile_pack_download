@@ -17,6 +17,9 @@ axios.interceptors.request.use(conf => {
     // set header
     conf.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     conf.headers['Accept'] = 'application/json, text/plain, */*';
+    conf.headers['Authorization'] = `Bearer ${Cookies.get('token')}`;
+    
+    //
     // 发起请求时，取消掉当前正在进行的相同请求
     if (promiseArr[conf.url] && !conf.ext.repeat_req) {
         promiseArr[conf.url]('取消重复请求:' + conf.url);
@@ -31,8 +34,12 @@ axios.interceptors.request.use(conf => {
 // 响应拦截器即异常处理
 axios.interceptors.response.use(
     (response) => {
+        if(response.data.code===401){
+            window.location.href='/#/login'
+        }
         return { ...response.data }
     }, (error) => {
+       
         try {
             if (error && error.response) {
                 switch (error.response.status) {
@@ -87,6 +94,7 @@ const ajax = async (method = 'POST', url = '', data = {}, ext = {}) => {
             cancel = c;
         })
     };
+    
     return new Promise((resolve, reject) => {
         axios(req).then(res => {
             try {

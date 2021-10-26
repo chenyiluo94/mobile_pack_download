@@ -5,6 +5,7 @@ import Page from './page.js'
 import Download from './download.js'
 import Console from './console.js'
 import Upload from './upload.js'
+import Login from './login.js'
 const routes = [
   {
     path: "/",
@@ -30,6 +31,7 @@ const routes = [
   ...Download,
   ...Console,
   ...Upload,
+  ...Login,
   {
     check_login: false,
     component: Page404

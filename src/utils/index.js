@@ -1,4 +1,5 @@
 import qs from 'qs'
+import Cookies from 'js-cookie';
 export const get_search = (data) => {
   return qs.stringify(data, {
     sort: function (a, b) {
@@ -33,5 +34,5 @@ export const getUrlParam = (searchP) => {
 }
 export default {
   get_search,
-  getUrlParam
+  getUrlParam,
 }
