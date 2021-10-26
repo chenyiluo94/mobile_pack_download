@@ -34,7 +34,7 @@ axios.interceptors.request.use(conf => {
 // 响应拦截器即异常处理
 axios.interceptors.response.use(
     (response) => {
-        if(response.data.code===401){
+        if(response.data.code===100005){
             window.location.href='/#/login'
         }
         return { ...response.data }
